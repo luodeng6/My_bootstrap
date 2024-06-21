@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入Bootstrap的CSS文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="element/index.css">
+    <style>
+        .form-horizontal .form-group{
+            display: flex;
+            margin: 6px;
+        }
+        .form-horizontal .form-group label{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- 模态框（Modal） -->
+    <!-- 模态框（Modal） -->
+    <div  class="modal" id="mod" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title">请填写信息</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <input type="hidden" id="id" name="id" v-model="entity.id">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">姓名</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" v-model="entity.name" placeholder="请输入姓名" id="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">昵称</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" v-model="entity.nickName" placeholder="请输入昵称" id="nickName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">性别</label>
+                            <div class="col-sm-7">
+                                <label class="radio-inline">
+                                    <input type="radio" value="男" v-model="entity.sex" id="sex">男
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" value="女" v-model="entity.sex" id="se2">女
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">年龄</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" v-model="entity.age" placeholder="请输入年龄" id="age">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">生日</label>
+                            <div class="col-sm-7">
+                                <div class="block">
+                                    <el-date-picker v-model="entity.birthday" id="birthday" type="datetime" clearable value-format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"></el-date-picker>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">手机号</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" v-model="entity.phone" placeholder="请输入手机号" id="phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">地址</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" v-model="entity.address" placeholder="请输入地址" id="address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">邮箱</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" v-model="entity.email" placeholder="请输入邮箱" id="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">身份证</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" v-model="entity.cardId" placeholder="请输入身份证" id="cardId">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >关闭</button>
+                    <button type="button" class="btn btn-primary" >保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 引入Bootstrap的JS文件（包含Popper.js） -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="element/index.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data() {
+            return {
+                authority: [],
+                permission: [],
+                storeUser: JSON.parse(localStorage.getItem("user")),
+                name: '',
+                user: {},
+
+                objs: [],
+                pageInfo: {},
+                preActive: true,
+                nextActive: true,
+                entity: {
+                    sex: '男'
+                }
+            }
+        },
+        mounted() {
+            var myModal = new bootstrap.Modal(document.getElementById('mod'));
+            myModal.show();
+
+        },
+        methods: {
+            loadTable(pageNum) {
+            },
+            init(o) {
+
+            },
+            add() {
+
+            },
+            update() {
+
+            },
+            del(id) {
+
+            },
+
+            upload: function () {
+            }
+        }
+    })
+</script>
+</body>
+</html>

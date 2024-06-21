@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Modal with Animation</title>
+    <!-- 引入Bootstrap的CSS文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<style>
+    #ModalBodyBox{
+        position: relative;
+    }
+    #ModalBodyBox img{
+        width: 77%;
+        position: absolute;
+        top: 10px;
+        left: 14%;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+    #ModalBodyBox img:first-child{
+        opacity: 1;
+    }
+</style>
+<body>
+<div id="app">
+
+    <button @click="doit" class="btn btn-primary btn-xs" type="button" >打开模态框</button>
+
+    <!--v-show="isShowMoulde                data-bs-backdrop="static" 设置单击遮罩不会关闭模态框-->
+    <div  id="myModal" class="modal fade" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- 模态框内容 -->
+                <div class="modal-header">
+                    <h5 class="modal-title">文件预览</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="ModalBodyBox"  class="modal-body">
+                    <div style="height: 200px;width: 100%;">
+                        <img  src="img/1.webp">
+                        <img  src="img/2.webp">
+                        <img  src="img/3.webp">
+                        <img  src="img/4.webp">
+                        <img  src="img/5.webp">
+                    </div>
+
+                </div>
+                <div  style="z-index: 2000;" class="modal-footer">
+                    <button type="button" @click="Prev" class="btn btn-info">上一张</button>
+                    <button type="button" @click="Next" class="btn btn-success">下一张</button>
+
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">保存更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 引入Bootstrap的JS文件（包含Popper.js） -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/vue.js"></script>
+
+<script>
+
+    var app=new Vue({
+        el:"#app",
+        data(){
+            return{
+             isShowMoulde:false,
+                imgList:["img/1.webp","img/2.webp","img/3.webp","img/4.webp","img/5.webp","img/6.webp"]
+                ,
+                urlSet:"",
+                imgIndex:0,
+                imgalllist:null,
+            }
+        },
+        mounted() {
+            this.imgalllist = document.querySelectorAll("#ModalBodyBox img");
+        },
+        methods:{
+            // 获取指定范围内的随机整数
+            getRandomInt(min, max) {
+                min = Math.ceil(min); // 向上取整，确保最小值为整数
+                max = Math.floor(max); // 向下取整，确保最大值为整数
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            },
+            doit(){
+                console.log("单击了！")
+                /* data-bs-toggle="modal" data-bs-target="#myModal"*/
+
+            /*   this. urlSet=this.imgList[this.getRandomInt(2,5)]*/
+
+                var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+                myModal.show();
+
+                console.log(this.imgalllist)
+            }
+            ,
+
+            SetAllImgNull(){
+
+               /* console.log(imgalllist)*/
+                for (var i = 0; i <this.imgalllist.length ; i++) {
+                   this. imgalllist[i].style.opacity=0
+                }
+            },
+
+            Prev(){
+                console.log("上一张")
+                //所有图片隐藏
+                this.SetAllImgNull();
+                //显示上一张
+                if (this.imgIndex==0){
+                    this.imgIndex=this.imgList.length-1
+                    this.imgalllist[this.imgIndex].style.opacity=1;
+                }else {
+                    this.imgIndex--;
+                   this. imgalllist[this.imgIndex].style.opacity=1;
+                }
+                console.log(this.imgIndex)
+            },
+            Next(){
+                console.log("下一张")
+                //所有图片隐藏
+                this.SetAllImgNull();
+                //显示下一张
+                if (this.imgIndex==this.imgalllist.length-1){
+                    this.imgIndex=0
+                   this. imgalllist[this.imgIndex].style.opacity=1;
+                }else {
+                    this.imgIndex++;
+                    this.imgalllist[this.imgIndex].style.opacity=1;
+                }
+                console.log(this.imgIndex)
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

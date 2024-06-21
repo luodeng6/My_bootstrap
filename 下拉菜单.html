@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      下拉菜单按钮
+    </button>
+    <div class="dropdown-menu">
+      <button class="dropdown-item" onclick="danji11()">单击</button>
+      <a class="dropdown-item" href="#">链接 2</a>
+      <a class="dropdown-item" href="#">链接 3</a>
+    </div>
+  </div>
+
+  <h1>折叠</h1>
+
+  <div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+            选项一
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+            <div class="card-body">
+            #1 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+            选项二
+        </a>
+        </div>
+         <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+            <div class="card-body">
+            #2 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+            选项三
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+            <div class="card-body">
+            #3 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script>
+    function danji11() {
+      alert("nb")
+    }
+  </script>
+</body>
+
+</html>
